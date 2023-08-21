@@ -24,7 +24,7 @@ function Modal({ onCloseModal, modalData }) {
   const isLoading = useSelector(SelectIsLoading);
   const error = useSelector(SelectError);
 
-  const handleClickBtnClose = () => {
+   const handleClickBtnClose = () => {
     onCloseModal();
   };
 

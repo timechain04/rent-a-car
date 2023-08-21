@@ -11,7 +11,7 @@ export const Overlay = styled.div`
   overscroll-behavior: contain;
   z-index: 5;
 `;
-export const ModalItem = styled.div`
+ export const ModalItem = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
