@@ -7,7 +7,7 @@ export const Home = () => {
     <Container>
       <HomeTitle>Find your drive</HomeTitle>
       <ImgContainer>
-        <ImgHome
+         <ImgHome
          src={backCar}
          alt="cars"
          width={1000}

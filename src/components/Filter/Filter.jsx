@@ -72,7 +72,7 @@ const Filter = ({ onFilterChange }) => {
         <label htmlFor="rentalPrice">
           Price/1 hour
           <Field as="select" id="rentalPrice" name="rentalPrice">
-            <option value="">Select a price ($)</option>
+             <option value="">Select a price ($)</option>
             {prices.map(price => (
               <option key={price}>{price}</option>
             ))}

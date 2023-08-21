@@ -13,7 +13,7 @@ const carsSlice = createSlice({
   name: 'cars',
   initialState,
   reducers: {
-    setFilter: (state, action) => {
+     setFilter: (state, action) => {
       state.filter = action.payload;
     },
     addToFavorites: (state, action) => {

@@ -23,7 +23,7 @@ function CardList({ onOpenModal, favorites, page }) {
   }
 
   const onLoadMore = () => {
-    setLoadedCars(prevLoadedCars => prevLoadedCars + itemsPerPage);
+     setLoadedCars(prevLoadedCars => prevLoadedCars + itemsPerPage);
   };
 
   return (

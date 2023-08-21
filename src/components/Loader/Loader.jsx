@@ -3,7 +3,7 @@ import { Dna } from 'react-loader-spinner';
 
 const Loader = () => {
   return (
-    <Dna
+     <Dna
       height="80"
       width="80"
       radius="9"

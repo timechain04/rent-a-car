@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledList = styled.ul`
+ export const StyledList = styled.ul`
   list-style: none;
   display: flex;
   flex-wrap: wrap;

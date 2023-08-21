@@ -48,7 +48,7 @@ export const CarInfo = styled.p`
   margin-top: 8px;
   margin-bottom: 0;
 `;
-export const LearnMoreBtn = styled.button`
+ export const LearnMoreBtn = styled.button`
   width: 100%;
   display: flex;
   justify-content: center;

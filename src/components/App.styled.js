@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const ContainerApp = styled.nav`
-  padding: 20px 60px;
-  background-color: rgb(245,245,245);
-  border-bottom: 2px solid #000000;
+   padding: 20px 60px;
+   background-color: rgb(245,245,245);
+   border-bottom: 2px solid #000000;
 `;
 export const BtnNav = styled.button`
   margin-left: 20px;

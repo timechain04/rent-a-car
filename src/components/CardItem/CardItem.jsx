@@ -43,7 +43,7 @@ function CardItem({
   const isFavorite = favorites.includes(id);
 
   const onClickFavorite = () => {
-    if (isFavorite) {
+     if (isFavorite) {
       dispatch(removeFromFavorites(id));
       Notiflix.Notify.failure('Car removed from favorites');
     } else {

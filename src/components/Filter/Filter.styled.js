@@ -9,9 +9,9 @@ export const FormStyled = styled.form`
   margin-bottom: 50px;
   gap: 18px;
   label {
-    display: flex;
-    flex-direction: column;
-    font-size: 14px;
+     display: flex;
+     flex-direction: column;
+     font-size: 14px;
   }
   input,
   select {
