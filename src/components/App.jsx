@@ -9,7 +9,7 @@ import { BtnNav, ContainerApp } from './App.styled';
 
 export const App = () => {
   return (
-    <div>
+     <div>
       <ContainerApp>
         <Link to="/">
           <BtnNav>Home</BtnNav>
