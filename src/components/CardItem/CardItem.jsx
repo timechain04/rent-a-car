@@ -3,20 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToFavorites, removeFromFavorites } from 'redux/slice';
 import { SelectFavorites } from 'redux/selectors';
 import {
+  StyledItem,
+  CarCont,
   CarInfo,
   CarPrice,
   CarTitle,
   FavBtn,
   LearnMoreBtn,
   StyledImg,
-  StyledItem,
-  CarCont,
   FavIconFill,
   FavIconBorder,
 } from './CardItem.styled';
 import Notiflix from 'notiflix';
 
-function CarItem({
+function CardItem({
   carInfo: {
     make,
     model,
@@ -111,9 +111,9 @@ function CarItem({
   );
 }
 
-CarItem.propTypes = {
+CardItem.propTypes = {
   carInfo: PropTypes.object.isRequired,
   onOpenModal: PropTypes.func.isRequired,
 };
 
-export default CarItem;
+export default CardItem;

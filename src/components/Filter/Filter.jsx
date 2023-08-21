@@ -2,8 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { SelectCars, SelectFilter } from 'redux/selectors';
 import { Field, Formik } from 'formik';
-import * as Yup from 'yup';./Filter.styled
-import { FormStyled } from './StyledFilter';
+import * as Yup from 'yup';
+import { FormStyled } from './Filter.styled';
 
 const Filter = ({ onFilterChange }) => {
   const cars = useSelector(SelectCars);

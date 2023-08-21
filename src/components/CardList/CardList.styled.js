@@ -17,5 +17,21 @@ export const LoadMoreBtn = styled.button`
   display: inline-block;
   color: #fff;
   border: 0;
-
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  min-width: 150px;
+  transition: 250ms;
+  &:hover,
+  &:focus {
+    background-color: rgb(21 42 172);
+    transition: 250ms;
+  }
+`;
+export const BtnCont = styled.div`
+  display: flex;
+  justify-content: center;
+  text-align: center;
 `;

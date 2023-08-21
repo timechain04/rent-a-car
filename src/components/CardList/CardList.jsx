@@ -1,15 +1,13 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCars } from 'redux/operations';
 import { SelectCars } from 'redux/selectors';
 import { BtnCont, LoadMoreBtn, StyledList } from './CardList.styled';
 import CarItem from 'components/CardItem/CardItem';
 
-function CarList({ onOpenModal, favorites, page }) {
+function CardList({ onOpenModal, favorites, page }) {
   const cars = useSelector(SelectCars);
   const dispatch = useDispatch();
-
   const itemsPerPage = 8;
   const [loadedCars, setLoadedCars] = useState(itemsPerPage);
 
@@ -46,4 +44,4 @@ function CarList({ onOpenModal, favorites, page }) {
   );
 }
 
-export default CarList;
+export default CardList;
