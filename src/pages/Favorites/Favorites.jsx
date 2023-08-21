@@ -24,7 +24,7 @@ export const Favorites = () => {
     setShowModal(false);
   };
 
-  return (
+   return (
     <Container>
       <FavoritesTitle>Your Favorite Cars</FavoritesTitle>
       {isLoading && <Loader />}
