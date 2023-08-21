@@ -8,3 +8,4 @@ export const catalogRequest = async () => {
   const { data } = await instance.get('/adverts');
   return data;
 };
+
