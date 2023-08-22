@@ -9,7 +9,7 @@ const initialState = {
   filter: '',
 };
 
-const carsSlice = createSlice({
+ const carsSlice = createSlice({
   name: 'cars',
   initialState,
   reducers: {
