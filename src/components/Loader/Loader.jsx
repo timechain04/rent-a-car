@@ -1,13 +1,13 @@
 import React from 'react';
-import { Dna } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Loader = () => {
   return (
-     <Dna
+    <ThreeDots
       height="80"
       width="80"
       radius="9"
-      color="#367570"
+      color="#3470FF"
       ariaLabel="three-dots-loading"
       wrapperStyle={{
         position: 'absolute',

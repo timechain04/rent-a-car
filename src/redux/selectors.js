@@ -1,5 +1,5 @@
- export const SelectCars = state => state.cars;
- export const SelectFavorites = state => state.favorites;
- export const SelectFilter = state => state.filter;
- export const SelectIsLoading = state => state.isLoading;
- export const SelectError = state => state.error;
+export const selectCarData = state => state.cars.carData;
+export const selectCarPerPageData = state => state.cars.carPerPage;
+export const selectFavoriteCarData = state => state.favorite.carsFavorite;
+export const selectModalData = state => state.modal.modalData;
+export const selectIsOpen = state => state.modal.isOpen;

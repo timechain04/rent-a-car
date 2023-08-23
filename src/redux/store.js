@@ -1,4 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { carReducer } from './carSlice';
+import { modalReducer } from './modalSlice';
+import { favoriteReducer } from './favoriteSlice';
+import storage from 'redux-persist/lib/storage';
+
 import {
   persistStore,
   persistReducer,
@@ -9,21 +14,23 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { carsReducer } from './slice';
 
-const favoritesPersistConfig = {
-  key: 'favorites',
+const favoritePersistConfig = {
+  key: 'favorite',
   storage,
-  whitelist: ['favorites'],
+  whitelist: ['carsFavorite'],
 };
 
 export const store = configureStore({
-  reducer: persistReducer(favoritesPersistConfig, carsReducer),
+  reducer: {
+    cars: carReducer,
+    modal: modalReducer,
+    favorite: persistReducer(favoritePersistConfig, favoriteReducer),
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });

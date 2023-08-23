@@ -1,114 +1,106 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { SelectError, SelectIsLoading } from 'redux/selectors';
+import React, { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  AccFunc,
-  CarDescr,
-  CarInfo,
-  CarTitle,
-  CloseBtn,
-  ConditionsCont,
-  IconClose,
-  ImgStyled,
-  MileagePrice,
-  MileagePriceCont,
-  ModalItem,
-  Overlay,
-  RentBtn,
-  RentalConditions,
-  TitleText,
+  BackDrop,
+  StyledBtnClose,
+  StyledConditions,
+  StyledIconClose,
+  StyledLink,
+  StyledModal,
+  StyledModalData,
+  StyledModalDetail,
+  StyledModalWrapper,
 } from './Modal.styled';
-import Loader from 'components/Loader/Loader';
+import { closeModal } from 'redux/modalSlice';
+import { selectIsOpen, selectModalData } from 'redux/selectors';
 
-function Modal({ onCloseModal, modalData }) {
-  const isLoading = useSelector(SelectIsLoading);
-  const error = useSelector(SelectError);
+const modal = document.getElementById('modal');
 
-   const handleClickBtnClose = () => {
-    onCloseModal();
-  };
-
-  const handleClickOverlay = evt => {
-    if (evt.target === evt.currentTarget) {
-      onCloseModal();
-    }
-  };
-
+const Modal = () => {
+  const dispatch = useDispatch();
+  const isOpen = useSelector(selectIsOpen);
+  const modalData = useSelector(selectModalData);
   useEffect(() => {
-    const handleKeyDown = evt => {
+    if (!isOpen) return;
+
+    const onCloseEsc = evt => {
       if (evt.code === 'Escape') {
-        onCloseModal();
+        dispatch(closeModal());
       }
     };
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keydown', onCloseEsc);
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', onCloseEsc);
     };
-  }, [onCloseModal]);
+  }, [dispatch, isOpen]);
 
-  const AccesoriesAndFunctionalities = [
-    ...modalData?.accessories,
-    ...modalData?.functionalities,
-  ];
-  const conditions = modalData?.rentalConditions.split('\n');
-  return (
-    <Overlay onClick={handleClickOverlay}>
-      <ModalItem>
-        <CloseBtn onClick={handleClickBtnClose}>
-          <IconClose
-            style={{
-              fontSize: 23,
-            }}
-          />
-        </CloseBtn>
-        <div>
-          <ImgStyled
-            src={modalData?.img}
-            alt={modalData?.make}
-            width={461}
-            height={248}
-            loading="lazy"
-          />
-        </div>
-        {isLoading && <Loader />}
-        {error && <div>Error: {error}</div>}
-        <CarTitle>
-          {modalData?.make} <span>{modalData?.model}</span>, {modalData?.year}
-        </CarTitle>
-        <CarInfo>
-          {modalData?.address} | id: {modalData?.id} | Year: {modalData?.year} |
-          Type: {modalData?.type} | Fuel Consumption:
-          {modalData?.fuelConsumption} | Engine Size: {modalData?.engineSize}
-        </CarInfo>
-        <CarDescr>{modalData?.description}</CarDescr>
-        <TitleText>Accessories and functionalities:</TitleText>
-        <AccFunc>{AccesoriesAndFunctionalities.join(' | ')}</AccFunc>
-        <TitleText>Rental Conditions:</TitleText>
-        <ConditionsCont>
-          <RentalConditions>{conditions[0]}</RentalConditions>
-          <RentalConditions>{conditions[1]}</RentalConditions>
-          <RentalConditions>{conditions[2]}</RentalConditions>
-        </ConditionsCont>
-        <MileagePriceCont>
-          <MileagePrice>
-            Mileage: <span>{modalData?.mileage.toLocaleString('en-US')}</span>
-          </MileagePrice>
-          <MileagePrice>
-            Price: <span>{modalData?.rentalPrice}</span>
-          </MileagePrice>
-        </MileagePriceCont>
-        <a
-          href="tel:+380730000000"
-          style={{
-            textDecoration: 'none',
-            color: 'white',
-          }}
-        >
-          <RentBtn>Rental car</RentBtn>
-        </a>
-      </ModalItem>
-    </Overlay>
+  const onCloseClick = evt => {
+    if (evt.currentTarget === evt.target) {
+      dispatch(closeModal());
+    }
+  };
+  const handleCloseBtn = () => {
+    dispatch(closeModal());
+  };
+  const address = modalData.address.split(',');
+  const rentalCond = modalData.rentalConditions.split('\n');
+  const age = rentalCond[0].split(':');
+  const mileageNum = modalData.mileage.toLocaleString('us-US');
+  const price = modalData.rentalPrice.substring(1);
+
+  return createPortal(
+    <BackDrop onClick={onCloseClick}>
+      <StyledModal>
+        <StyledModalWrapper>
+          <img src={modalData.img} alt={modalData.make} />
+        </StyledModalWrapper>
+        <StyledModalData>
+          <p>{modalData.make}</p>
+          <p className="model">{modalData.model},</p>
+          <p>{modalData.year}</p>
+        </StyledModalData>
+        <StyledModalDetail>
+          <p>
+            {address[1]} | {address[2]} | Id: {modalData.id} | Year:{' '}
+            {modalData.year} | Type: {modalData.type}
+            <br />
+            Fuel Consumption: {modalData.fuelConsumption} | Engine Size:{' '}
+            {modalData.engineSize}
+          </p>
+        </StyledModalDetail>
+        <p className="description">{modalData.description}</p>
+        <p className="access-func">Accessories and functionalities:</p>
+        <p className="access">
+          {modalData.accessories[0]} | {modalData.accessories[1]} |{' '}
+          {modalData.accessories[2]}
+        </p>
+        <p className="func">
+          {modalData.functionalities[0]} | {modalData.functionalities[1]} |{' '}
+          {modalData.functionalities[2]}
+        </p>
+        <p className="rental-cond">Rental Conditions:</p>
+        <StyledConditions>
+          <p>
+            {age[0]}: <span>{age[1]}</span>
+          </p>
+          <p>{rentalCond[1]}</p>
+          <p>{rentalCond[2]}</p>
+          <p>
+            Mileage: <span>{mileageNum}</span>
+          </p>
+          <p>
+            Price: <span>{price}$</span>
+          </p>
+        </StyledConditions>
+        <StyledLink to="tel:+380730000000">Rent a car</StyledLink>
+        <StyledIconClose onClick={handleCloseBtn}>
+          <StyledBtnClose />
+        </StyledIconClose>
+      </StyledModal>
+    </BackDrop>,
+    modal
   );
-}
+};
 
 export default Modal;

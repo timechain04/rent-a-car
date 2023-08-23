@@ -1,151 +1,172 @@
 import styled from 'styled-components';
-import CloseIcon from '@mui/icons-material/Close';
+import { VscClose } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 
-export const Overlay = styled.div`
+export const BackDrop = styled.div`
+  background: rgba(34, 13, 91, 0.23);
+  backdrop-filter: blur(3.5px);
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(18, 20, 23, 0.5);
   overscroll-behavior: contain;
-  z-index: 5;
+  z-index: 10;
 `;
- export const ModalItem = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  padding: 40px;
-  transform: translate(-50%, -50%);
+
+export const StyledModal = styled.div`
+  display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  display: flex;
-  width: 100%;
-  max-width: 462px;
+  width: 461px;
+  height: 672px;
+  padding: 40px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
   border-radius: 24px;
-  background: white;
-`;
-export const ImgStyled = styled.img`
-  border-radius: 12px;
-  object-fit: cover;
-`;
-export const CarTitle = styled.h3`
-  margin: 5px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 24px;
-  color: #121417;
-  margin-bottom: 0;
-  margin-top: 14px;
-  span {
-    margin-left: 5px;
-    color: #3470ff;
+  background: #fff;
+  & .description {
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  & .access-func,
+  .rental-cond {
+    margin-top: 24px;
+    margin-bottom: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  & .access,
+  .func {
+    display: flex;
+    margin-top: 4px;
+    color: rgba(18, 20, 23, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
   }
 `;
-export const CarInfo = styled.p`
-  margin: 10px 0;
-  color: rgba(18, 20, 23, 0.5);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  max-width: 455px;
-`;
-export const CarDescr = styled.p`
-  margin: 5px 0;
-  color: #121417;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  max-width: 455px;
-`;
-export const TitleText = styled.h4`
-  margin: 5px 0;
-  color: #121417;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 20px;
-`;
-export const AccFunc = styled.p`
-  margin: 5px 0;
-  color: rgba(18, 20, 23, 0.5);
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  max-width: 455px;
-`;
-export const ConditionsCont = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-export const RentalConditions = styled.p`
-  margin: 5px 0;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  background-color: #f9f9f9;
-  border-radius: 35px;
-  padding: 7px 14px;
-`;
-export const MileagePrice = styled.p`
-  margin: 5px 0;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 18px;
-  background-color: #f9f9f9;
-  border-radius: 35px;
-  padding: 7px 14px;
-  span {
-    color: #3470ff;
-    font-weight: 600;
-  }
-`;
-export const MileagePriceCont = styled.div`
-  display: flex;
-  gap: 8px;
-`;
-export const RentBtn = styled.button`
-  margin-top: 24px;
-  padding: 12px 50px;
-  border-radius: 12px;
-  background-color: #3470ff;
-  text-align: center;
-  display: inline-block;
-  color: #fff;
-  border: 0;
-  text-decoration: none;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 24px;
-  font-weight: 600;
-  min-width: 150px;
-  transition: 250ms;
-  &:hover,
-  &:focus {
-    background-color: #0b44cd;
-    transition: 250ms;
-  }
-`;
-export const CloseBtn = styled.button`
+export const StyledIconClose = styled.div`
+  width: 24px;
+  height: 24px;
   position: absolute;
   top: 16px;
   right: 16px;
-  background-color: transparent;
-  border: none;
-  padding: 0;
   cursor: pointer;
-`;
-export const IconClose = styled(CloseIcon)`
-  transition: 250ms;
-  &:active,
-  &:focus,
   &:hover {
-    color: black;
-    cursor: pointer;
-    transition: 250ms;
-    transform: scale(1.2);
+  }
+`;
+
+export const StyledBtnClose = styled(VscClose)`
+  width: 24px;
+  height: 24px;
+  transition: all 0.3s ease-in-out;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  &:hover {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
+`;
+
+export const StyledModalWrapper = styled.div`
+  overflow: hidden;
+  border-radius: 14px;
+  background-color: #f3f3f2;
+  & img {
+    display: block;
+    width: 461px;
+    height: 248px;
+    object-fit: cover;
+  }
+`;
+
+export const StyledModalData = styled.div`
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  & .model {
+    color: #3470ff;
+  }
+`;
+
+export const StyledModalDetail = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  height: 40px;
+
+  & p {
+    display: flex;
+    color: rgba(18, 20, 23, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px; 
+  }
+`;
+
+export const StyledConditions = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  & p {
+    display: flex;
+    padding: 7px 14px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    background: #f9f9f9;
+    color: #363535;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: -0.24px;
+  }
+  & span {
+    color: #3470ff;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: -0.24px;
+    padding-left: 4px;
+  }
+`;
+
+export const StyledLink = styled(Link)`
+  display: flex;
+  width: 68px;
+  padding: 12px 50px;
+  margin-top: 24px;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border: none;
+  border-radius: 12px;
+  background-color: #3470ff;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px; 
+  &:hover {
+    background-color: #0b44cd;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2),
+      0px 1px 5px 0px rgba(0, 0, 0, 0.14), 0px 2px 5px -1px rgba(0, 0, 0, 0.12);
+  }
+  &:active {
+    scale: 0.95;
   }
 `;
